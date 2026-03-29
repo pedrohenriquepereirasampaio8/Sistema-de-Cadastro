@@ -1,0 +1,70 @@
+usuarios = []
+
+def cadastrar():
+    nome = input("Digite o nome: ")
+    idade = input("Digite a idade: ")
+
+    usuario = {
+        "nome": nome,
+        "idade": idade
+    }
+
+    usuarios.append(usuario)
+    print("✅ Usuário cadastrado com sucesso!")
+
+def listar():
+    if not usuarios:
+        print("⚠️ Nenhum usuário cadastrado.")
+        return
+
+    print("\n📋 Lista de usuários:")
+    for i, u in enumerate(usuarios, start=1):
+        print(f"{i}. Nome: {u['nome']} | Idade: {u['idade']}")
+
+def buscar():
+    nome = input("Digite o nome para buscar: ")
+    
+    for u in usuarios:
+        if u["nome"].lower() == nome.lower():
+            print(f"🔍 Encontrado: {u}")
+            return
+    
+    print("❌ Usuário não encontrado.")
+
+def remover():
+    nome = input("Digite o nome para remover: ")
+
+    for u in usuarios:
+        if u["nome"].lower() == nome.lower():
+            usuarios.remove(u)
+            print("🗑️ Usuário removido!")
+            return
+
+    print("❌ Usuário não encontrado.")
+
+def menu():
+    while True:
+        print("\n==== MENU ====")
+        print("1 - Cadastrar usuário")
+        print("2 - Listar usuários")
+        print("3 - Buscar usuário")
+        print("4 - Remover usuário")
+        print("5 - Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            cadastrar()
+        elif opcao == "2":
+            listar()
+        elif opcao == "3":
+            buscar()
+        elif opcao == "4":
+            remover()
+        elif opcao == "5":
+            print("Encerrando...")
+            break
+        else:
+            print("⚠️ Opção inválida!")
+
+menu()
